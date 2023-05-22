@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  #start-container, #quiz-container, #result-container {
+    text-align: center;
+    margin-top: 100px;
+  }
+  
+  #quiz-container {
+    margin-top: 50px;
+  }
+  
+  #choices {
+    list-style: none;
+    padding: 0;
+  }
+  
+  #result-container {
+    font-size: 24px;
+  }
+  
+  #result-container.correct {
+    color: green;
+  }
+  
+  #result-container.incorrect {
+    color: red;
+  }
+  
