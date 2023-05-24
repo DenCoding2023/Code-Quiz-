@@ -8,13 +8,15 @@
     <div id="start-container">
       <h1>Code Quiz</h1>
       <button id="start-btn">Start</button>
-      <button id="highscore-button">View High Scores</button>
+      <button id="high-score-btn">High Scores</button>
+      <div id="high-score-container"></div>
+
 
     </div>
     <div id="quiz-container" style="display: none;">
       <h2 id="question"></h2>
       <ul id="choices"></ul>
-      <button id="submit-btn">Submit</button>
+      <!-- <button id="submit-btn">Submit</button> -->
  <!-- Example timer element -->
 
             <div id="timer"></div>
@@ -34,10 +36,9 @@
           <label for="initials">Enter your initials:</label>
           <input type="text" id="initials" name="initials" maxlength="4" required />
           <button type="submit" id="submit-score">Submit</button>
-<!-- Example timer element -->
-<div id="timer"></div>
-<!-- Example user score element -->
-            <div id="user-score"></div>
+          <div id="user-score"></div>
+          <div id="user-initials"></div>
+          
 
         </form>
       </div>

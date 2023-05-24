@@ -33,6 +33,7 @@ function submitScore(event) {
 let currentQuestionIndex = 0;
 let score = 0;
 let timer;
+let timeLeft; // Declare timeLeft as a global variable
 
 // Define your questions as an array of objects
 const questions = [
@@ -111,7 +112,6 @@ function selectAnswer(selectedButton) {
   }
 }
 
-
 function endQuiz() {
   clearInterval(timer);
   quizContainer.style.display = 'none';
@@ -131,30 +131,37 @@ function endQuiz() {
     score: scorePercentage
   };
   saveScore(userScore);
+
+  // Display the name and score
+  const userNameElement = document.getElementById('user-name');
+  userNameElement.innerHTML = `Name: ${userScore.initials}`;
+
+  const userScoreElement = document.getElementById('user-score');
+  userScoreElement.innerHTML = `Score: ${userScore.score}`;
 }
 
-function saveScore(initials, score) {
+function saveScore(userScore) {
   // Implement your logic to save the initials and score
   // For example, you can make an API call or store them in localStorage
   // Here's a simple example using localStorage:
   const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
-  const newScore = { initials, score };
+  const newScore = { initials: userScore.initials, score: userScore.score };
   highScores.push(newScore);
   localStorage.setItem('highScores', JSON.stringify(highScores));
 
   // Update the HTML to display the score
   const scoreElement = document.getElementById('user-score');
-  scoreElement.textContent = `Score: ${score}`;
+  scoreElement.innerHTML = `Score: ${userScore.score}`;
 
   // Update the HTML to display the initials
   const initialsElement = document.getElementById('user-initials');
-  initialsElement.textContent = `Initials: ${initials}`;
+  initialsElement.innerHTML = `Initials: ${userScore.initials}`;
 
   // You can customize the HTML structure and styling as needed
 }
 
 function startTimer() {
-  let timeLeft = 60; // Set the desired quiz duration in seconds
+  timeLeft = 60; // Set the desired quiz duration in seconds
 
   timer = setInterval(() => {
     timeLeft--;
