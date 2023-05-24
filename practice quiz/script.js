@@ -92,6 +92,11 @@ function selectAnswer(selectedButton) {
     resultContainer.className = 'incorrect';
   }
   resultContainer.style.display = 'block';
+
+  // Update the score display
+  const scoreElement = document.getElementById('score');
+  scoreElement.textContent = score;
+
   currentQuestionIndex++;
   if (currentQuestionIndex < questions.length) {
     setTimeout(() => {
@@ -105,6 +110,7 @@ function selectAnswer(selectedButton) {
     }, 1000);
   }
 }
+
 
 function endQuiz() {
   clearInterval(timer);
