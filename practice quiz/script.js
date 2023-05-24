@@ -23,12 +23,14 @@ const submitButton = document.getElementById('submit-btn');
 const resultContainer = document.getElementById('result-container');
 const resultElement = document.getElementById('result');
 const timerElement = document.getElementById('timer');
+const pauseButton = document.getElementById('pause-btn');
 
 const scoreForm = document.getElementById('score-form');
 const initialsInput = document.getElementById('initials');
 const submitScoreButton = document.getElementById('submit-score');
 
 submitScoreButton.addEventListener('click', submitScore);
+pauseButton.addEventListener('click', pauseTimer);
 
 function submitScore(event) {
   event.preventDefault();
@@ -51,6 +53,7 @@ let currentQuestionIndex = 0;
 let score = 0;
 let timer;
 let timeLeft; // Declare timeLeft as a global variable
+let isPaused = false;
 
 // Define your questions as an array of objects
 const questions = [
@@ -77,6 +80,7 @@ submitButton.addEventListener('click', submitAnswer);
 
 function startQuiz() {
   startButton.style.display = 'none';
+  pauseButton.style.display = 'inline-block'; // Show the pause button
   quizContainer.style.display = 'block';
   displayQuestion();
   startTimer();
@@ -194,15 +198,25 @@ function startTimer() {
   timeLeft = 60; // Set the desired quiz duration in seconds
 
   timer = setInterval(() => {
-    timeLeft--;
-    if (timeLeft >= 0) {
-      // Update the timer display
-      timerElement.textContent = `Time remaining: ${timeLeft} seconds`;
-    } else {
-      clearInterval(timer);
-      endQuiz();
+    if (!isPaused) {
+      timeLeft--;
+      if (timeLeft >= 0) {
+        timerElement.textContent = `Time remaining: ${timeLeft} seconds`;
+      } else {
+        clearInterval(timer);
+        endQuiz();
+      }
     }
   }, 1000);
+}
+
+function pauseTimer() {
+  isPaused = !isPaused;
+  if (isPaused) {
+    pauseButton.textContent = 'Resume'; // Update the button text to "Resume"
+  } else {
+    pauseButton.textContent = 'Pause'; // Update the button text to "Pause"
+  }
 }
 
 const highScoreButton = document.getElementById('high-score-btn');

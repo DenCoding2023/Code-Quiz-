@@ -15,6 +15,12 @@ body {
   #choices {
     list-style: none;
     padding: 0;
+    /* width: 50px; */
+  }
+
+  li button{
+    width: 200px;
+    font-size: larger;
   }
   
   #result-container {
@@ -29,3 +35,11 @@ body {
     color: red;
   }
   
+  #score-container{
+    margin-left: 393px;
+    font-size: xx-large;
+  }
+
+  #timer{
+    font-size: xx-large;
+  }
