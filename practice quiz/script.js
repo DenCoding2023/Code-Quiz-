@@ -1,3 +1,20 @@
+
+function displayHighScores() {
+  const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+  if (highScores.length === 0) {
+    highScoreContainer.textContent = 'No high scores available.';
+  } else {
+    highScoreContainer.innerHTML = '';
+    highScores.forEach((score, index) => {
+      const scoreItem = document.createElement('div');
+      scoreItem.innerHTML = `#${index + 1}: ${score.initials} - ${score.score}%`;
+      highScoreContainer.appendChild(scoreItem);
+    });
+  }
+}
+
+
+
 const startButton = document.getElementById('start-btn');
 const quizContainer = document.getElementById('quiz-container');
 const questionElement = document.getElementById('question');
@@ -138,6 +155,19 @@ function endQuiz() {
 
   const userScoreElement = document.getElementById('user-score');
   userScoreElement.innerHTML = `Score: ${userScore.score}`;
+
+  // Create a back button
+  const backButton = document.createElement('button');
+  backButton.textContent = 'Start Over';
+  resultContainer.appendChild(backButton);
+
+  // Add event listener to the back button
+  backButton.addEventListener('click', () => {
+    // Reset the quiz and start over
+    currentQuestionIndex = 0;
+    score = 0;
+    startQuiz();
+  });
 }
 
 function saveScore(userScore) {
@@ -174,3 +204,25 @@ function startTimer() {
     }
   }, 1000);
 }
+
+const highScoreButton = document.getElementById('high-score-btn');
+const highScoreContainer = document.getElementById('high-score-container');
+
+highScoreButton.addEventListener('click', displayHighScores);
+
+function displayHighScores() {
+  const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+  if (highScores.length === 0) {
+    highScoreContainer.textContent = 'No high scores available.';
+  } else {
+    highScoreContainer.innerHTML = '';
+    highScores.forEach((score, index) => {
+      const scoreItem = document.createElement('div');
+      scoreItem.innerHTML = `#${index + 1}: ${score.initials} - ${score.score}%`;
+      highScoreContainer.appendChild(scoreItem);
+    });
+  }
+}
+
+
+
