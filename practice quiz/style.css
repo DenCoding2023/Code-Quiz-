@@ -23,6 +23,12 @@ body {
     width: 200px;
     font-size: larger;
   }
+/* Puase and Resume button */
+  #pause-btn{
+    width: 90px;
+    height: 35px;
+    font-size:larger;
+  }
   
   #result-container {
     font-size: 24px;
