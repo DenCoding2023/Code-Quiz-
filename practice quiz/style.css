@@ -1,7 +1,8 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: bisque
-    }
+    background-color: bisque;
+    border: 3px solid #0d0c0c;
+  }
   
   #start-container, #quiz-container, #result-container {
     text-align: center;
