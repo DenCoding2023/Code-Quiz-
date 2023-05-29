@@ -16,18 +16,24 @@ body {
   #choices {
     list-style: none;
     padding: 0;
-    /* width: 50px; */
+        /* width: 50px; */
   }
 
   li button{
     width: 200px;
     font-size: larger;
+    border: 3px solid #0d0c0c;
+    border-radius: 10px;
+    margin-top: 4px;
   }
 /* Puase and Resume button */
   #pause-btn{
     width: 90px;
     height: 35px;
     font-size:larger;
+    margin-top: 12px;
+    border: 3px solid #0d0c0c;
+    border-radius: 10px;
   }
 
   span #score{
@@ -72,6 +78,8 @@ body {
     border-style: outset;
     border-color: buttonborder;
     border-image: initial;
+    border: 3px solid #0d0c0c;
+    border-radius: 10px;
   }
   
   #result-container {
@@ -90,8 +98,34 @@ body {
     /* margin-left: 393px; */
     font-size: xx-large;
     margin-top: 30px;
+    margin-bottom: 15px;
   }
 
   #timer{
     font-size: xx-large;
+  }
+
+  #high-score-btn{
+    width: 200px;
+    font-size: x-large;
+    border: 3px solid #0d0c0c;
+    border-radius: 10px;
+  }
+
+  #high-score-container{
+    margin-top: 25px;
+    
+  }
+
+a.btn{
+    margin-bottom: 15px;
+    
+  }
+
+  /* main button */
+  #start-btn{
+    width:96px;
+    font-size: x-large;
+    border: 3px solid #0d0c0c;
+    border-radius: 10px;
   }

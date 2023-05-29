@@ -89,7 +89,7 @@ const questions = [
 ];
 
 startButton.addEventListener('click', startQuiz);
-submitButton.addEventListener('click', submitAnswer);
+// submitButton.addEventListener('click', submitAnswer);
 
 function startQuiz() {
   startButton.style.display = 'none';
@@ -232,8 +232,8 @@ function pauseTimer() {
   }
 }
 
-const highScoreButton = document.getElementById('high-score-btn');
-const highScoreContainer = document.getElementById('high-score-container');
+const highScoreButton = document.getElementById("high-score-btn");
+const highScoreContainer = document.getElementById("high-score-container");
 
 highScoreButton.addEventListener('click', displayHighScores);
 
@@ -253,3 +253,22 @@ function displayHighScores() {
 
 
 
+// Add an event listener to detect when the window size changes
+window.addEventListener('resize', handleScreenSize);
+
+// Function to handle different screen sizes
+function handleScreenSize() {
+  if (window.innerWidth < 768) {
+    // Code to execute for small screens (width less than 768px)
+    // For example, you can modify the layout, styling, or behavior for small screens
+    // Here's an example:
+    highScoreContainer.classList.add('small-screen');
+  } else {
+    // Code to execute for larger screens
+    // Remove any modifications made for small screens
+    highScoreContainer.classList.remove('small-screen');
+  }
+}
+
+// Call the function initially to apply the appropriate code for the current screen size
+handleScreenSize();
