@@ -72,6 +72,19 @@ const questions = [
     choices: ['<a>', '<h1>', '<p>', '<div>'],
     correctAnswer: '<a>'
   },
+  {
+    question: 'What is the purpose of the break statement in Java?',
+    choices: ['It terminates the current loop or switch statement.', 
+    'It skips the current iteration of a loop.',
+     'It transfers the program control to a specified label.',
+      'It throws an exception to be caught by a try-catch block.'],
+    correctAnswer: 'It terminates the current loop or switch statement.'
+  },
+  {
+    question: 'Which tag is used to define the main heading of a webpage in HTML?',
+    choices: ['a) <header>', 'b) <title>', 'c) <h1>', 'd) <main>'],
+    correctAnswer: 'c) <h1>'
+  },
   // Add more questions as needed
 ];
 
