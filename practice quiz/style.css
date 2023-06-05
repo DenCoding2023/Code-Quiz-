@@ -1,13 +1,19 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: bisque;
-    border: 3px solid #0d0c0c;
-  }
-  
+  font-family: Arial, sans-serif;
+  background-color: bisque;
+  border: 3px solid #0d0c0c;
+  max-width: 75vw; /* Set maximum width to 75% of the viewport width */
+  max-height: 75vw;
+  margin: 0 auto; /* Center the page horizontally */
+}
+
+/* Rest of your CSS code... */
+
+  /* YOU have the allingmet of the following containers here */
   #start-container, #quiz-container, #result-container {
     text-align: center;
-    margin-top: 100px;
-    font-size: large;
+    margin-top: 21px;
+    /* font-size: large; */
   }
   
   #quiz-container {
@@ -22,14 +28,14 @@ body {
 
   li button{
     width: 200px;
-    font-size: larger;
+    /* font-size: larger; */
     border: 3px solid #0d0c0c;
     border-radius: 10px;
     margin-top: 4px;
   }
 /* Puase and Resume button */
   #pause-btn{
-    width: 90px;
+ 
     height: 35px;
     font-size:larger;
     margin-top: 12px;
