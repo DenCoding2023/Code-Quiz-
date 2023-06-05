@@ -7,6 +7,7 @@ body {
   #start-container, #quiz-container, #result-container {
     text-align: center;
     margin-top: 100px;
+    font-size: large;
   }
   
   #quiz-container {
@@ -124,7 +125,7 @@ a.btn{
 
   /* main button */
   #start-btn{
-    width:96px;
+    width:200px;
     font-size: x-large;
     border: 3px solid #0d0c0c;
     border-radius: 10px;
