@@ -7,18 +7,34 @@
   <body>
     <div id="start-container">
       <h1>Code Quiz</h1>
-      <button id="start-btn">Start</button>
-      <button id="highscore-button">View High Scores</button>
+      <p>Welcome to your basic code quiz. You will have several questions which you 
+        will have to select the correct answers from the multiple choice. 
+        You will have 60 seconds to complete the quiz. If you select the correct answer you 
+        will be prompted if your answer is correct. If you answer the question in correct 
+        10 seconds deducted from the time!!
+        </p>
+        <p>As a courtesy for those who need more time to read for personal reasons 
+          please use the pause button. Once you understand the question then press 
+          the resume button to continue. </p>
+
+      <button id="start-btn">Start Game</button>
+      <button id="high-score-btn">High Scores</button>
+      <div id="high-score-container"></div>
+
 
     </div>
     <div id="quiz-container" style="display: none;">
       <h2 id="question"></h2>
       <ul id="choices"></ul>
-      <button id="submit-btn">Submit</button>
+      <!-- <button id="submit-btn">Submit</button> -->
  <!-- Example timer element -->
-            <div id="timer"></div>
+
+            <div id="timer"></div> <button id="pause-btn">Pause</button>
 <!-- Example user score element -->
-            <div id="user-score"></div>
+           <div id="score-container">
+                Score: <span id="score">0</span>            
+                <a href="/index.html" class="btn">Start Over</a>
+           </div>
 
 
       <!-- <span class="timer">Timer:<span class="timer timer-count">120</span></span> -->
@@ -29,8 +45,16 @@
         <h2 id="result"></h2>
         <form id="score-form">
           <label for="initials">Enter your initials:</label>
-          <input type="text" id="initials" name="initials" maxlength="3" required />
+          <input type="text" id="initials" name="initials" maxlength="4" required />
           <button type="submit" id="submit-score">Submit</button>
+          <div id="user-score"></div>
+          <div id="user-initials"></div>
+          <!-- <button id="high-score-btn">High Scores</button> -->
+          <div id="high-score-container"></div>
+          <a href="/index.html" class="btn">Go Back</a>
+         
+
+
         </form>
       </div>
       
