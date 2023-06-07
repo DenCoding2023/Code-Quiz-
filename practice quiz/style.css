@@ -1,9 +1,9 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: bisque;
+  background-color: #c6c1bb;;
   border: 3px solid #0d0c0c;
   max-width: 75vw; /* Set maximum width to 75% of the viewport width */
-  max-height: 75vw;
+  /* max-height: 80vw; */
   margin: 0 auto; /* Center the page horizontally */
 }
 

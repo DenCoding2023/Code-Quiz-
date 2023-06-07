@@ -32,22 +32,43 @@ const submitScoreButton = document.getElementById('submit-score');
 submitScoreButton.addEventListener('click', submitScore);
 pauseButton.addEventListener('click', pauseTimer);
 
+// function submitScore(event) {
+//   event.preventDefault();
+
+//   const initials = initialsInput.value.trim();
+//   const scoreData = { initials, score };
+
+//   console.log('User initials:', initials); // Add this line to log the initials to the console
+
+//   // TODO: Implement the logic to save the score data (e.g., send it to a server, store in local storage, etc.)
+//   saveScore(scoreData);
+
+//   // Reset the form
+//   initialsInput.value = '';
+
+//   // TODO: Implement any additional logic you need after submitting the score (e.g., redirect to a score page, show a leaderboard, etc.)
+// }
+
 function submitScore(event) {
   event.preventDefault();
 
   const initials = initialsInput.value.trim();
   const scoreData = { initials, score };
 
-  // TODO: Implement the logic to save the score data (e.g., send it to a server, store in local storage, etc.)
+  console.log('User initials:', initials); // Add this line to log the initials to the console
 
-  // Example: Logging the score data to the console
-  console.log(scoreData);
+  // TODO: Implement the logic to save the score data (e.g., send it to a server, store in local storage, etc.)
+  saveScore(scoreData);
 
   // Reset the form
   initialsInput.value = '';
 
   // TODO: Implement any additional logic you need after submitting the score (e.g., redirect to a score page, show a leaderboard, etc.)
 }
+
+// Move this event listener to the end of the code
+submitScoreButton.addEventListener('click', submitScore);
+
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -159,7 +180,9 @@ function endQuiz() {
     console.log('Time is up!');
   }
 
-  const initials = prompt('Enter your initials:');
+  // Remove the prompt for user initials
+  const initials = initialsInput.value.trim();
+
   const userScore = {
     initials,
     score: scorePercentage
@@ -207,6 +230,20 @@ function saveScore(userScore) {
   // You can customize the HTML structure and styling as needed
 }
 
+
+function saveScore(scoreData) {
+  // Implement your logic to save the score data
+  // For example, you can make an API call or store it in localStorage
+  // Here's a simple example using localStorage:
+  const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+  highScores.push(scoreData);
+  localStorage.setItem('highScores', JSON.stringify(highScores));
+
+  // Update the high score display
+  displayHighScores();
+}
+
+
 function startTimer() {
   timeLeft = 60; // Set the desired quiz duration in seconds
 
@@ -250,7 +287,6 @@ function displayHighScores() {
     });
   }
 }
-
 
 
 // Add an event listener to detect when the window size changes
