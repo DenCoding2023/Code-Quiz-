@@ -32,26 +32,11 @@ const submitScoreButton = document.getElementById('submit-score');
 submitScoreButton.addEventListener('click', submitScore);
 pauseButton.addEventListener('click', pauseTimer);
 
-// function submitScore(event) {
-//   event.preventDefault();
 
-//   const initials = initialsInput.value.trim();
-//   const scoreData = { initials, score };
-
-//   console.log('User initials:', initials); // Add this line to log the initials to the console
-
-//   // TODO: Implement the logic to save the score data (e.g., send it to a server, store in local storage, etc.)
-//   saveScore(scoreData);
-
-//   // Reset the form
-//   initialsInput.value = '';
-
-//   // TODO: Implement any additional logic you need after submitting the score (e.g., redirect to a score page, show a leaderboard, etc.)
-// }
 function submitScore(event) {
   event.preventDefault();
 
-  let initials = initialsInput.value.trim();
+  let initials = initialsInput.value.trim(); // Get the initials from the input field
 
   // Check if initials are provided
   if (initials.length === 0) {
@@ -61,7 +46,7 @@ function submitScore(event) {
       return;
     }
   } else if (initials.length > 3) {
-    alert('Initials can only be up to 3 characters long. Please enter a valid initials.');
+    alert('Initials can only be up to 3 characters long. Please enter valid initials.');
     return;
   }
 
@@ -80,8 +65,6 @@ function submitScore(event) {
   // TODO: Implement any additional logic you need after submitting the score (e.g., redirect to a score page, show a leaderboard, etc.)
 }
 
-// Move this event listener to the end of the code
-submitScoreButton.addEventListener('click', submitScore);
 
 
 
@@ -90,9 +73,11 @@ let score = 0;
 let timer;
 let timeLeft; // Declare timeLeft as a global variable
 let isPaused = false;
+let quizCompleted = false; // Flag variable to track quiz completion
 
 // Define your questions as an array of objects
 const questions = [
+
   {
     question: 'Which of the following is NOT a valid Java identifier?',
     choices: ['myVariable', '123variable', '_variable', 'ariable123'],
@@ -133,6 +118,12 @@ function startQuiz() {
   quizContainer.style.display = 'block';
   displayQuestion();
   startTimer();
+
+  currentQuestionIndex = 0;
+  score = 0;
+  quizCompleted = false;
+
+  // ... Existing code ...
 }
 
 function displayQuestion() {
@@ -182,6 +173,8 @@ function selectAnswer(selectedButton) {
   }
 }
 
+
+
 function endQuiz() {
   clearInterval(timer);
   quizContainer.style.display = 'none';
@@ -194,9 +187,16 @@ function endQuiz() {
   } else {
     console.log('Time is up!');
   }
+  // Check if the quiz has already been completed
+  if (quizCompleted) {
+    return; // Exit the function if the quiz is already completed
+  }
+  quizCompleted = true; // Set the quizCompleted flag to true
 
-  // Prompt for user initials
-  const initials = prompt('Enter your initials to Save your Score:');
+  // ... Existing code ...
+
+  // Get the user initials from the submit button
+  const initials = submitButton.value.trim();
   const userScore = {
     initials,
     score: scorePercentage
@@ -222,7 +222,11 @@ function endQuiz() {
     score = 0;
     startQuiz();
   });
+
+  // Update the high score display
+  displayHighScores();
 }
+
 
 function saveScore(userScore) {
   // Implement your logic to save the initials and score
