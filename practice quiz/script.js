@@ -48,16 +48,30 @@ pauseButton.addEventListener('click', pauseTimer);
 
 //   // TODO: Implement any additional logic you need after submitting the score (e.g., redirect to a score page, show a leaderboard, etc.)
 // }
-
 function submitScore(event) {
   event.preventDefault();
 
-  const initials = initialsInput.value.trim();
+  let initials = initialsInput.value.trim();
+
+  // Check if initials are provided
+  if (initials.length === 0) {
+    initials = prompt('Please enter your initials (up to 3 characters):');
+    if (!initials) {
+      // User canceled the prompt or entered an empty value
+      return;
+    }
+  } else if (initials.length > 3) {
+    alert('Initials can only be up to 3 characters long. Please enter a valid initials.');
+    return;
+  }
+
+  initials = initials.slice(0, 3); // Limit initials to 3 characters
+
   const scoreData = { initials, score };
 
-  console.log('User initials:', initials); // Add this line to log the initials to the console
+  console.log('User initials:', initials); // Log the initials to the console
 
-  // TODO: Implement the logic to save the score data (e.g., send it to a server, store in local storage, etc.)
+  // Save the score with initials
   saveScore(scoreData);
 
   // Reset the form
@@ -68,6 +82,7 @@ function submitScore(event) {
 
 // Move this event listener to the end of the code
 submitScoreButton.addEventListener('click', submitScore);
+
 
 
 let currentQuestionIndex = 0;
@@ -180,9 +195,8 @@ function endQuiz() {
     console.log('Time is up!');
   }
 
-  // Remove the prompt for user initials
-  const initials = initialsInput.value.trim();
-
+  // Prompt for user initials
+  const initials = prompt('Enter your initials to Save your Score:');
   const userScore = {
     initials,
     score: scorePercentage
@@ -215,32 +229,20 @@ function saveScore(userScore) {
   // For example, you can make an API call or store them in localStorage
   // Here's a simple example using localStorage:
   const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
-  const newScore = { initials: userScore.initials, score: userScore.score };
-  highScores.push(newScore);
-  localStorage.setItem('highScores', JSON.stringify(highScores));
-
-  // Update the HTML to display the score
-  const scoreElement = document.getElementById('user-score');
-  scoreElement.innerHTML = `Score: ${userScore.score}`;
-
-  // Update the HTML to display the initials
-  const initialsElement = document.getElementById('user-initials');
-  initialsElement.innerHTML = `Initials: ${userScore.initials}`;
-
-  // You can customize the HTML structure and styling as needed
-}
-
-
-function saveScore(scoreData) {
-  // Implement your logic to save the score data
-  // For example, you can make an API call or store it in localStorage
-  // Here's a simple example using localStorage:
-  const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
-  highScores.push(scoreData);
+  highScores.push(userScore);
   localStorage.setItem('highScores', JSON.stringify(highScores));
 
   // Update the high score display
   displayHighScores();
+
+  // Update the HTML to display the score and initials
+  const scoreElement = document.getElementById('user-score');
+  scoreElement.innerHTML = `Score: ${userScore.score}`;
+
+  const initialsElement = document.getElementById('user-initials');
+  initialsElement.innerHTML = `Initials: ${userScore.initials}`;
+
+  // You can customize the HTML structure and styling as needed
 }
 
 
@@ -287,7 +289,6 @@ function displayHighScores() {
     });
   }
 }
-
 
 // Add an event listener to detect when the window size changes
 window.addEventListener('resize', handleScreenSize);
