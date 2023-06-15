@@ -2,8 +2,7 @@ const startButton = document.getElementById('start-btn');
 const quizContainer = document.getElementById('quiz-container');
 const questionElement = document.getElementById('question');
 const choicesList = document.getElementById('choices');
-const submitButton = document.getElementById('submit-score');
-
+const submitButton = document.getElementById('submit-btn');
 const resultContainer = document.getElementById('result-container');
 const resultElement = document.getElementById('result');
 const timerElement = document.getElementById('timer');
@@ -16,8 +15,6 @@ const submitScoreButton = document.getElementById('submit-score');
 submitScoreButton.addEventListener('click', submitScore);
 pauseButton.addEventListener('click', pauseTimer);
 
-
-
 function submitScore(event) {
   event.preventDefault();
 
@@ -25,8 +22,11 @@ function submitScore(event) {
 
   // Check if initials are provided
   if (initials.length === 0) {
-    alert('Please enter your initials (up to 3 characters).');
-    return;
+    initials = prompt('Please enter your initials (up to 3 characters):');
+    if (!initials) {
+      // User canceled the prompt or entered an empty value
+      return;
+    }
   } else if (initials.length > 3) {
     alert('Initials can only be up to 3 characters long. Please enter valid initials.');
     return;
@@ -56,33 +56,36 @@ let quizCompleted = false; // Flag variable to track quiz completion
 
 // Define your questions as an array of objects
 const questions = [
-  {
-    question: 'Which of the following is NOT a valid Java identifier?',
-    choices: ['myVariable', '123variable', '_variable', 'ariable123'],
-    correctAnswer: '123variable'
-  },
-  {
-    question: 'Which of the following is the correct way to declare and initialize a constant variable in Java?',
-    choices: ['constant int x = 5;', 'final x = 5;', 'final int x = 5;', 'int x = final 5;'],
-    correctAnswer: 'final int x = 5;'
-  },
-  {
-    question: 'Which HTML tag is used to define a hyperlink?',
-    choices: ['<a>', '<h1>', '<p>', '<div>'],
-    correctAnswer: '<a>'
-  },
-  {
-    question: 'What is the purpose of the break statement in Java?',
-    choices: ['It terminates the current loop or switch statement.', 'It skips the current iteration of a loop.', 'It transfers the program control to a specified label.', 'It throws an exception to be caught by a try-catch block.'],
-    correctAnswer: 'It terminates the current loop or switch statement.'
-  },
-  {
-    question: 'Which tag is used to define the main heading of a webpage in HTML?',
-    choices: ['a) <header>', 'b) <title>', 'c) <h1>', 'd) <main>'],
-    correctAnswer: 'c) <h1>'
-  },
-  // Add more questions as needed
-];
+    {
+        question: 'Which of the following is NOT a valid Java identifier?',
+        choices: ['myVariable', '123variable', '_variable', 'ariable123'],
+        correctAnswer: '123variable'
+      },
+      {
+        question: 'Which of the following is the correct way to declare and initialize a constant variable in Java?',
+        choices: ['constant int x = 5;', 'final x = 5;', 'final int x = 5;', 'int x = final 5;'],
+        correctAnswer: 'final int x = 5;'
+      },
+      {
+        question: 'Which HTML tag is used to define a hyperlink?',
+        choices: ['<a>', '<h1>', '<p>', '<div>'],
+        correctAnswer: '<a>'
+      },
+      {
+        question: 'What is the purpose of the break statement in Java?',
+        choices: ['It terminates the current loop or switch statement.', 
+        'It skips the current iteration of a loop.',
+         'It transfers the program control to a specified label.',
+          'It throws an exception to be caught by a try-catch block.'],
+        correctAnswer: 'It terminates the current loop or switch statement.'
+      },
+      {
+        question: 'Which tag is used to define the main heading of a webpage in HTML?',
+        choices: ['a) <header>', 'b) <title>', 'c) <h1>', 'd) <main>'],
+        correctAnswer: 'c) <h1>'
+      },
+      // Add more questions as needed
+    ];
 
 startButton.addEventListener('click', startQuiz);
 
@@ -110,11 +113,12 @@ function displayQuestion() {
     choiceButton.textContent = choice;
     listItem.appendChild(choiceButton);
     choicesList.appendChild(listItem);
-    choiceButton.addEventListener('click', () => selectAnswer(choice));
+    choiceButton.addEventListener('click', () => selectAnswer(choiceButton));
   });
 }
 
-function selectAnswer(selectedAnswer) {
+function selectAnswer(selectedButton) {
+  const selectedAnswer = selectedButton.textContent;
   const question = questions[currentQuestionIndex];
   if (selectedAnswer === question.correctAnswer) {
     score++;
@@ -165,36 +169,20 @@ function endQuiz() {
   }
   quizCompleted = true; // Set the quizCompleted flag to true
 
-  // Get the user initials from the input field
-  let initials = initialsInput.value.trim();
-  if (initials.length === 0) {
-    initials = prompt('Please enter your initials (up to 3 characters):');
-    if (!initials) {
-      // User canceled the prompt or entered an empty value
-      return;
-    }
-  } else if (initials.length > 3) {
-    alert('Initials can only be up to 3 characters long. Please enter valid initials.');
-    return;
-  }
-  initials = initials.slice(0, 3); // Limit initials to 3 characters
-
-  const scoreData = { initials, score: scorePercentage };
-
-  console.log('User initials:', initials); // Log the initials to the console
-
-  // Save the score with initials
-  saveScore(scoreData);
+  // Get the user initials from the submit button
+  const initials = submitButton.value.trim();
+  const userScore = {
+    initials,
+    score: scorePercentage
+  };
+  saveScore(userScore);
 
   // Display the name and score
   const userNameElement = document.getElementById('user-name');
-  userNameElement.innerHTML = `Name: ${scoreData.initials}`;
+  userNameElement.innerHTML = `Name: ${userScore.initials}`;
 
   const userScoreElement = document.getElementById('user-score');
-  userScoreElement.innerHTML = `Score: ${scoreData.score}%`;
-
-  // Reset the form
-  initialsInput.value = '';
+  userScoreElement.innerHTML = `Score: ${userScore.score}`;
 
   // Create a back button
   const backButton = document.createElement('button');
