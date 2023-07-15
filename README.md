@@ -35,7 +35,7 @@ https://dencoding2023.github.io/Code-Quiz-/
 https://github.com/DenCoding2023/Code-Quiz-.git
 
 ## Screenshot:
-![Alt text](<images/Code quiz.jpg>)
-![Alt text](<images/Starting the quiz.jpg>)
-![Alt text](images/promt.jpg)
-![Alt text](<images/score history.jpg>)
+![Alt text](</practice quiz/images/Code quiz.jpg>)
+![Alt text](</practice quiz/images/Starting the quiz.jpg>)
+![Alt text](</practice%20quiz/images/promt.jpg>)
+![Alt text](</practice quiz/images/score history.jpg>)
