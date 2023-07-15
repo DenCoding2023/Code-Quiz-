@@ -44,7 +44,7 @@ function submitScore(event) {
   // Reset the form
   initialsInput.value = '';
 
-  // TODO: Implement any additional logic you need after submitting the score (e.g., redirect to a score page, show a leaderboard, etc.)
+  
 }
 
 let currentQuestionIndex = 0;
@@ -98,7 +98,7 @@ function startQuiz() {
   score = 0;
   quizCompleted = false;
 
-  // ... Existing code ...
+  
 }
 
 function displayQuestion() {
@@ -143,7 +143,7 @@ function selectAnswer(selectedAnswer) {
     setTimeout(() => {
       resultContainer.style.display = 'none';
       endQuiz();
-    }, 1000);
+    }, 2000);
   }
 }
 
@@ -215,9 +215,7 @@ function endQuiz() {
 }
 
 function saveScore(userScore) {
-  // Implement your logic to save the initials and score
-  // For example, you can make an API call or store them in localStorage
-  // Here's a simple example using localStorage:
+ 
   const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
   highScores.push(userScore);
   localStorage.setItem('highScores', JSON.stringify(highScores));

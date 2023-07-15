@@ -15,7 +15,10 @@ body {
     margin-top: 21px;
     /* font-size: large; */
   }
-  
+  h1 { 
+    background: aliceblue;
+  }
+
   #quiz-container {
     margin-top: 50px;
   }
@@ -110,6 +113,7 @@ body {
 
   #timer{
     font-size: xx-large;
+    background: yellow;
   }
 
   #high-score-btn{
