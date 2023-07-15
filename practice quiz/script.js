@@ -81,6 +81,7 @@ const questions = [
     choices: ['a) <header>', 'b) <title>', 'c) <h1>', 'd) <main>'],
     correctAnswer: 'c) <h1>'
   },
+
   // Add more questions as needed
 ];
 
@@ -170,7 +171,7 @@ function endQuiz() {
   if (initials.length === 0) {
     initials = prompt('Please enter your initials (up to 3 characters):');
     if (!initials) {
-      // User canceled the prompt or entered an empty value
+          // User canceled the prompt or entered an empty value
       return;
     }
   } else if (initials.length > 3) {
